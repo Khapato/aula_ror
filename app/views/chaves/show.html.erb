@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @chave %>
+
+<div>
+  <%= link_to "Edit this chave", edit_chave_path(@chave) %> |
+  <%= link_to "Back to chaves", chaves_path %>
+
+  <%= button_to "Destroy this chafe", @chave, method: :delete %>
+</div>

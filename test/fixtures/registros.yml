@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  chave: one
+  funcionario: one
+  hora_retirada: 2024-11-14 20:11:01
+  hora_devolucao: 2024-11-14 20:11:01
+
+two:
+  chave: two
+  funcionario: two
+  hora_retirada: 2024-11-14 20:11:01
+  hora_devolucao: 2024-11-14 20:11:01

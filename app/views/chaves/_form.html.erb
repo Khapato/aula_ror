@@ -1,0 +1,27 @@
+<%= form_with(model: chave) do |form| %>
+  <% if chave.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(chave.errors.count, "error") %> prohibited this chave from being saved:</h2>
+
+      <ul>
+        <% chave.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :identificador, style: "display: block" %>
+    <%= form.text_field :identificador %>
+  </div>
+
+  <div>
+    <%= form.label :descricao, style:"display: block"%>
+    <%= form.text_field :descricao %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

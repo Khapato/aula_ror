@@ -1,0 +1,37 @@
+<style>
+	.paragrafo{
+	color: blue;
+	}
+</style>
+
+<p style="color: green"><%= notice %></p>
+
+<h1>Chaves</h1>
+
+<div id="chaves">
+  <% @chaves.each do |chave| %>
+    <%= render chave %>
+    <p>
+      <%= link_to "Show this chafe", chave %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New chave", new_chave_path %>
+
+
+
+
+<div class="card card-default">
+<div class="card-header">aaaa</div>
+<div claas="card-body">
+<p class="paragrafo" onclick="mudarcor()">adfdsaf</p>
+</div>
+</div>
+
+
+<script>
+function mudarcor(){
+  $(this).css("color","blue");
+};
+</script>

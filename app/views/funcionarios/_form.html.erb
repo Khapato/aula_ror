@@ -1,0 +1,36 @@
+<div class="col-12">
+<%= form_with(model: funcionario) do |form| %>
+  <% if funcionario.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(funcionario.errors.count, "error") %> prohibited this funcionario from being saved:</h2>
+
+      <ul>
+        <% funcionario.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class="row">
+ 
+   <div class="col-3">
+     <%= form.label :nome, style: "display: block" %>
+     <%= form.text_field :nome, class: "form-control" %>
+   </div>
+
+
+     <div class="col-3">
+        <%= form.label :matricula, style: "display: block" %>
+        <%= form.text_field :matricula %>
+     </div>
+</div>
+  <div>
+    <%= form.label :funcao, style: "display: block" %>
+    <%= form.text_field :funcao %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+</div>
