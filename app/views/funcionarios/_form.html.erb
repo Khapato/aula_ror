@@ -12,25 +12,27 @@
     </div>
   <% end %>
 <div class="row">
- 
-   <div class="col-3">
+    <div class="col-12">
      <%= form.label :nome, style: "display: block" %>
      <%= form.text_field :nome, class: "form-control" %>
-   </div>
-
-
-     <div class="col-3">
+    </div>
+     <div class="col-6">
         <%= form.label :matricula, style: "display: block" %>
-        <%= form.text_field :matricula %>
+        <%= form.text_field :matricula, class: "form-control" %>
      </div>
+     <div class="col-6">
+    <%= form.label :função, style: "display: block" %>
+    <%= form.select :funcao, options_for_select(["Funcionário", "Aluno"]), {include_blank: "Escolha aqui..."}, class: "form-control" %>
+  </div>
 </div>
-  <div>
-    <%= form.label :funcao, style: "display: block" %>
-    <%= form.text_field :funcao %>
-  </div>
 
-  <div>
-    <%= form.submit %>
-  </div>
+<div class="row">
+	<div class="col-12" style="text-align:center; margin-top:10px">
+	    <%= form.submit "Enviar", class: "btn btn-danger caixa-sombra"%>
+        </div>
+
+  
+
+  
 <% end %>
 </div>
