@@ -40,6 +40,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_14_231101) do
     t.index ["funcionario_id"], name: "index_registros_on_funcionario_id"
   end
 
-  add_foreign_key "registros", "chaves", column: "chave_id"
+  add_foreign_key "registros", "chaves"
   add_foreign_key "registros", "funcionarios"
 end

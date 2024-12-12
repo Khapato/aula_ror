@@ -1,19 +1,13 @@
-<h1>Novo funcionário</h1>
+<div class= "row  div-flex">
+	<div class="col-6">
+		<div class="card">
+  			<div class="card-header" style="text-align: center;">
+			  	<h6 style="margin-bottom: 0px">Novo Funcionário</h6>
+			</div>
+			<div class="card-body">
+				<%= render "form", funcionario: @funcionario %>  	
+			</div>
+		</div>
 
-
-
-<div class="row">
-<%= render "form", funcionario: @funcionario %>
-
-
+	</div>
 </div>
-
-
-
-<br>
-
-<div>
-  <%= link_to "Voltar", funcionarios_path %>
-</div>
-
-

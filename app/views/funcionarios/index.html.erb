@@ -1,14 +1,37 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Funcionarios</h1>
 
-<div id="funcionarios">
-  <% @funcionarios.each do |funcionario| %>
-    <%= render funcionario %>
-    <p>
-      <%= link_to "Show this funcionario", funcionario %>
-    </p>
-  <% end %>
+<div class="row div-flex">
+<div class="col-8">
+<div class="card">
+	<div class="card-header" style="text-align: center;"> Tabela de Funcionários</div>
+	<div class="card-body">
+<table class= "table">	
+	<thead>
+		<tr>
+			<th>Nome</th>
+			<th>Matrícula</th>
+			<th>Função</th>
+		</tr>
+</thead>
+<tbody>
+<%Funcionario.all.each do |funcionario|%>
+	<tr>
+		<td><%=funcionario.nome%></td>
+		<td><%=funcionario.matricula%></td>
+		<td><%=funcionario.funcao%></td>
+	</tr>
+<%end%>
+</tbody>
+</table>
+	
+	</div>
 </div>
+
+</div>
+</div>
+
+
+
 
 <%= link_to "New funcionario", new_funcionario_path %>

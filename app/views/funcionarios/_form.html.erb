@@ -12,25 +12,24 @@
     </div>
   <% end %>
 <div class="row">
- 
-   <div class="col-3">
+   <div class="col-6">
      <%= form.label :nome, style: "display: block" %>
      <%= form.text_field :nome, class: "form-control" %>
    </div>
-
-
-     <div class="col-3">
-        <%= form.label :matricula, style: "display: block" %>
-        <%= form.text_field :matricula %>
-     </div>
-</div>
-  <div>
+   <div class="col-6">
+     <%= form.label :matricula, style: "display: block" %>
+     <%= form.text_field :matricula, class: "form-control"%>
+   </div>
+   <div class=" col-6">
     <%= form.label :funcao, style: "display: block" %>
-    <%= form.text_field :funcao %>
-  </div>
+    <%= form.text_field :funcao, class: "form-control"%>
+   </div>
+</div>
+ 
 
-  <div>
-    <%= form.submit %>
+  <div style="text-align: center; margin-top: 15px;">
+    <%= form.submit "Submeter Informações", class: "btn btn-primary" %>
+      <%= link_to "Voltar", funcionarios_path, class: "btn btn-primary" %>
   </div>
 <% end %>
 </div>
