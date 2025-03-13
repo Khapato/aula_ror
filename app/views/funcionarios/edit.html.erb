@@ -1,10 +1,14 @@
-<h1>Editing funcionario</h1>
+<div class= "row  div-flex">
+	<div class="col-4">
+		<div class="card">
+  			<div class="card-header" style="text-align: center;">
+			  	<h6 style="margin-bottom: 0px">Editar Funcionario</h6>
+			</div>
+			<div class="card-body">
+				<%= render "form",  funcionario: @funcionario %>  	
+			</div>
+		</div>
 
-<%= render "form", funcionario: @funcionario %>
-
-<br>
-
-<div>
-  <%= link_to "Show this funcionario", @funcionario %> |
-  <%= link_to "Back to funcionarios", funcionarios_path %>
+	</div>
 </div>
+<br>

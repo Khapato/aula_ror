@@ -22,12 +22,12 @@ class ChavesController < ApplicationController
   # POST /chaves or /chaves.json
   def create
     @chave = Chave.new(chave_params)
-    @chave.identificador = @chave.identificador.downcase.delete(" ");
-
+    @chave.identificador = @chave.identificador.downcase.delete(" ")
+    @chave.disp = true
+    	
     respond_to do |format|
       if @chave.save
-        format.html { redirect_to @chave, notice: "
-         was successfully created." }
+        format.html { redirect_to chaves_path, notice: "A chave foi criada com sucesso" }
         format.json { render :show, status: :created, location: @chave }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -40,7 +40,7 @@ class ChavesController < ApplicationController
   def update
     respond_to do |format|
       if @chave.update(chave_params)
-        format.html { redirect_to @chave, notice: "Chafe was successfully updated." }
+        format.html { redirect_to chaves_path, notice: "A chave foi atualizada com sucesso" }
         format.json { render :show, status: :ok, location: @chave }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -54,7 +54,7 @@ class ChavesController < ApplicationController
     @chave.destroy!
 
     respond_to do |format|
-      format.html { redirect_to chaves_path, status: :see_other, notice: "Chafe was successfully destroyed." }
+      format.html { redirect_to chaves_path, status: :see_other, notice: "A chave foi deletada com sucesso." } 
       format.json { head :no_content }
     end
   end
@@ -67,6 +67,6 @@ class ChavesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def chave_params
-      params.require(:chave).permit(:identificador, :descricao)
+      params.require(:chave).permit(:identificador, :descricao, :disp)
     end
 end

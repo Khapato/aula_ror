@@ -1,14 +1,41 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Registros</h1>
-
-<div id="registros">
-  <% @registros.each do |registro| %>
-    <%= render registro %>
-    <p>
-      <%= link_to "Show this registro", registro %>
-    </p>
-  <% end %>
+<div class="row div-flex">
+	<div class="col-8">
+		<div class="card" style="position: relative;"> 
+			<div class="card-header" style="text-align: center;"> Tabela de Registros </div> 
+			<div style="position: absolute; right: 1px; top: 1px;">  <%= link_to "<i class=\"fa fa-plus\"></i>".html_safe, new_registro_path , class: "btn btn-success", title: "Criar novo registro"%></div>
+			<div class="card-body">
+				<table class= "table">	
+					<thead>
+						<tr>
+							<th>Solicitante</th>
+							<th>Identificador</th>
+							<th>Descrição</th>
+							<th>Horário de Retirada</th>
+							<th>Horário de Devolução</th>
+							<th>Ações</th>
+						</tr>
+				</thead>
+					<tbody>
+						<%@registros.each do |registro|%>
+							<tr>
+								<td><%=registro.funcionario.nome%></td>
+								<td><%=registro.chave.identificador%></td>
+								<td><%=registro.chave.descricao%></td>
+								<td><%=formatar_data(registro.hora_retirada)%></td>
+								<td><%=formatar_data(registro.hora_devolucao)%></td>
+								<td> 
+									<%= link_to "<i class=\"fa fa-pencil\"></i>".html_safe, edit_registro_path(id: registro.id), class: "btn btn-primary", title: "Editar" %>
+									<%= link_to "<i class=\"fa fa-trash\"></i>".html_safe, registro, method: :delete, class: "btn btn-danger", title: "Deletar" %>
+								</td>
+							</tr>
+						<%end%>
+					</tbody>
+				</table>
+				<br>
+				<%= will_paginate @registros, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, list_classes: %w(pagination justify-content-center) %>
+			</div>
+		</div>
+	</div>
 </div>
-
-<%= link_to "New registro", new_registro_path %>

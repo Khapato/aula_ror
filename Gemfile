@@ -75,3 +75,11 @@ gem "bootstrap"
 gem "sassc-rails"
 
 
+
+gem "devise", "~> 4.9"
+gem "font-awesome-rails"
+gem 'will_paginate'
+gem 'will_paginate-bootstrap-style'
+
+
+

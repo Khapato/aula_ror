@@ -1,37 +1,41 @@
-<style>
-	.paragrafo{
-	color: blue;
-	}
-</style>
-
 <p style="color: green"><%= notice %></p>
 
-<h1>Chaves</h1>
 
-<div id="chaves">
-  <% @chaves.each do |chave| %>
-    <%= render chave %>
-    <p>
-      <%= link_to "Show this chafe", chave %>
-    </p>
-  <% end %>
+<div class="row div-flex">
+<div class="col-8">
+<div class="card">
+	<div class="card-header" style="text-align: center;"> Tabela de Chaves</div>
+	<div style="position: absolute; right: 0px;">  <%= link_to "Nova chave", new_chave_path , class: "btn btn-success"%></div>
+	<div class="card-body">
+<table class= "table">	
+	<thead>
+		<tr>
+			<th>Descrição</th>
+			<th>Identificador</th>
+			<th>Ações</th>
+		</tr>
+</thead>
+<tbody>
+<%Chave.all.each do |chave|%>
+	<tr>
+		<td><%=chave.descricao%></td>
+		<td><%=chave.identificador%></td>
+		<td> 
+			<%= link_to "Editar", edit_chave_path(id: chave.id), class: "btn btn-primary" %></div> 
+			<%= link_to "Deletar", chave, method: :delete, class: "btn btn-danger" %></div>
+		</td>
+	</tr>
+<%end%>
+</tbody>
+</table>
+	
+	</div>
 </div>
 
-<%= link_to "New chave", new_chave_path %>
-
-
-
-
-<div class="card card-default">
-<div class="card-header">aaaa</div>
-<div claas="card-body">
-<p class="paragrafo" onclick="mudarcor()">adfdsaf</p>
 </div>
 </div>
 
 
-<script>
-function mudarcor(){
-  $(this).css("color","blue");
-};
-</script>
+
+
+

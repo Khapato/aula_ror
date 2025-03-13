@@ -3,7 +3,7 @@ class RegistrosController < ApplicationController
 
   # GET /registros or /registros.json
   def index
-    @registros = Registro.all
+    @registros = Registro.all.paginate(page: params[:page], per_page: 3)
   end
 
   # GET /registros/1 or /registros/1.json
@@ -22,10 +22,13 @@ class RegistrosController < ApplicationController
   # POST /registros or /registros.json
   def create
     @registro = Registro.new(registro_params)
-
+    chave = Chave.where(id: @registro.chave_id).first
+    
+    chave.disp = false
+   
     respond_to do |format|
-      if @registro.save
-        format.html { redirect_to @registro, notice: "Registro was successfully created." }
+      if (chave.save)&&(@registro.save)
+        format.html { redirect_to '/', notice: "O registro foi criado com sucesso." }
         format.json { render :show, status: :created, location: @registro }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -36,9 +39,11 @@ class RegistrosController < ApplicationController
 
   # PATCH/PUT /registros/1 or /registros/1.json
   def update
+    chave = Chave.where(id: @registro.chave_id).first
+    chave.disp = true
     respond_to do |format|
-      if @registro.update(registro_params)
-        format.html { redirect_to @registro, notice: "Registro was successfully updated." }
+      if (chave.save)&&(@registro.update(registro_params))
+        format.html { redirect_to '/', notice: "O registro foi atualizado com sucesso." }
         format.json { render :show, status: :ok, location: @registro }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,7 +57,7 @@ class RegistrosController < ApplicationController
     @registro.destroy!
 
     respond_to do |format|
-      format.html { redirect_to registros_path, status: :see_other, notice: "Registro was successfully destroyed." }
+      format.html { redirect_to registros_path, status: :see_other, notice: "O registro foi deletado com sucesso." }
       format.json { head :no_content }
     end
   end

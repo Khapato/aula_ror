@@ -1,9 +1,13 @@
-<h1>New chave</h1>
+<div class= "row  div-flex">
+	<div class="col-6">
+		<div class="card">
+  			<div class="card-header" style="text-align: center;">
+			  	<h6 style="margin-bottom: 0px">Nova Chave</h6>
+			</div>
+			<div class="card-body">
+				<%= render "form", chave: @chave %>  	
+			</div>
+		</div>
 
-<%= render "form", chave: @chave %>
-
-<br>
-
-<div>
-  <%= link_to "Back to chaves", chaves_path %>
+	</div>
 </div>

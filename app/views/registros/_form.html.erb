@@ -11,27 +11,49 @@
     </div>
   <% end %>
 
-  <div>
+<div class="row">
+  <div class="col-6">
     <%= form.label :chave_id, style: "display: block" %>
-    <%= form.select :chave_id, options_for_select(Chave.all.map{|m| [m.identificador,m.id]}) %>
+    <%if current_page?(action: 'new')%> 
+	<%= form.select :chave_id, options_for_select(Chave.all.map{|m| [m.identificador,m.id]},params[:chaveid]),{include_blank: "Escolha uma opção."}, class: "form-control"  %>
+    <%else%>
+	<%= form.select :chave_id, options_for_select(Chave.all.map{|m| [m.identificador,m.id]},form.object.chave_id),{include_blank: "Escolha uma opção."}, class: "form-control",disabled: !current_page?(action: 'new')  %>
+    <%end%>
   </div>
 
-  <div>
+  <div class= "col-6">
     <%= form.label :funcionario_id, style: "display: block" %>
-    <%= form.select :funcionario_id, options_for_select(Funcionario.all.map{|m| [m.nome,m.id]}) %>
+    <%= form.select :funcionario_id, options_for_select(Funcionario.all.map{|m| [m.nome,m.id]}, form.object.funcionario_id),{include_blank: "Escolha uma opção."}, class: "form-control",disabled: !   current_page?(action: 'new')  %>
   </div>
 
-  <div>
+  <div class= "col-6">
     <%= form.label :hora_retirada, style: "display: block" %>
-    <%= form.datetime_field :hora_retirada %>
-  </div>
 
-  <div>
+  <%if current_page?(action: 'new')%>
+    <%= form.datetime_field :hora_retirada , class: "form-control", value: Time.now, disabled: false %>  
+   <%else%>
+    <%= form.datetime_field :hora_retirada , class: "form-control", disabled: true %>  
+   <%end%> 
+  </div>
+  
+
+  <div class= "col-6">
     <%= form.label :hora_devolucao, style: "display: block" %>
-    <%= form.datetime_field :hora_devolucao %>
+    <%= form.datetime_field :hora_devolucao , class: "form-control", disabled: current_page?(action: 'new')%>
+    
+
   </div>
 
-  <div>
-    <%= form.submit %>
+</div>
+
+  <div style="text-align: center; margin-top: 15px;">
+    <%= form.submit "Submeter Informações", class: "btn btn-primary" %>
+      <%= link_to "Voltar", registros_path, class: "btn btn-primary" %>
   </div>
+
 <% end %>
+
+
+
+
+

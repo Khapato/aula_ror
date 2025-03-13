@@ -1,3 +1,4 @@
+<div class="col-12">
 <%= form_with(model: chave) do |form| %>
   <% if chave.errors.any? %>
     <div style="color: red">
@@ -10,18 +11,22 @@
       </ul>
     </div>
   <% end %>
+<div class="row">
+   <div class="col-6">
+     <%= form.label :identificador, style: "display: block" %>
+     <%= form.text_field :identificador, class: "form-control" %>
+   </div>
+   <div class="col-6">
+     <%= form.label :descricao, style: "display: block" %>
+     <%= form.text_field :descricao, class: "form-control"%>
+   </div>
+   
+</div>
+ 
 
-  <div>
-    <%= form.label :identificador, style: "display: block" %>
-    <%= form.text_field :identificador %>
-  </div>
-
-  <div>
-    <%= form.label :descricao, style:"display: block"%>
-    <%= form.text_field :descricao %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+  <div style="text-align: center; margin-top: 15px;">
+    <%= form.submit "Submeter Informações", class: "btn btn-primary" %>
+      <%= link_to "Voltar", chaves_path, class: "btn btn-primary" %>
   </div>
 <% end %>
+</div>

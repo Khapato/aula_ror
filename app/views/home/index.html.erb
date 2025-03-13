@@ -1,0 +1,106 @@
+
+ <!--     
+        
+        <div style="margin-bottom: 50px
+        ">
+        <%= link_to "registros",  registros_path%>
+        </div>
+        
+        <%= link_to "funcionarios",  funcionarios_path%>
+
+        <%= link_to "chaves",  chaves_path%>
+      
+  
+</div>
+        
+<a href="#"  onclick="teste()">CLique aqui para ver a quantidade de chaves</a>
+<a href="#"  onclick="n_funcionarios()">CLique aqui para ver a quantidade de funcionários</a>
+<script>     
+ function teste(){
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '/home/action.json' , true);
+    xhr.onload = function() { 
+        if (xhr.status >= 200 && xhr.status < 300) {
+		alert("A quantidade de chaves cadastradas é de: " + xhr.responseText);
+        } else { 
+            alert("X");
+        }               
+ };
+ xhr.onerror = function() {
+ };
+ xhr.send();
+ }
+ 
+function n_funcionarios(){
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '/home/n_funcionarios.json' , true);
+    xhr.onload = function() { 
+        if (xhr.status >= 200 && xhr.status < 300) {
+		alert("A quantidade de funcionários cadastrados é de: " + xhr.responseText);
+        } else { 
+            alert("X");
+        }               
+ };
+ xhr.onerror = function() {
+ };
+ xhr.send();
+ }
+ 
+</script>
+ 
+ --!>
+ 
+ <style>
+ .chave{
+    width: 50px;
+    height: 50px;
+    opacity: 100%;
+ }
+ .indisponivel{
+    opacity: 30%;
+ }
+ 
+ .frame {
+ 	border: solid 1px #eee;
+ 	width: 100%;
+ 	margin: 4px 4px 4px 4px;
+ }
+ 
+ .big-frame {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+ }
+ </style>
+
+<div class="container">
+<br>
+<div class="big-frame">
+	<div class="card">
+		<div class="card-header"> Quadro de Chaves </div>
+		<div class="card-body">
+			<table style="text-align: center">
+				<tr>
+					<%i = 1;%>
+					<% Chave.all.each do |chave| %>
+						<%if i%3 == 0%>
+							</tr>
+							<tr>
+						<%end%>
+						<td style="width: 55px!important">
+							<% if chave.disp == true %>
+								<div class="frame">
+									<div class="titulo-chave"> </div>
+									<a href="<%= new_registro_path(chaveid: chave.id) %>" style="display: block"> <%= image_tag("chave.png", class:"chave", style:"display: block; margin: 2px 2px 2px 2px;") %></a>
+								</div>
+							<% else %>
+								<a href="<%= edit_registro_url(id: Registro.where(chave_id: chave.id).order(hora_retirada: :desc).first.id) %>"><%= image_tag("chave.png", class: "chave indisponivel", title:Registro.where(chave_id: chave.id).last.funcionario.nome) %></a>
+							<%end %>
+						</td>
+						<% i = i +1%>
+					<% end %>
+				</tr>
+			</table>
+		</div>
+</div>
+</div>
